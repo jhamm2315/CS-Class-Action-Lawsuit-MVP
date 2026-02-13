@@ -140,3 +140,12 @@ It does not provide legal advice.
 
 MIT (update as appropriate)
 
+
+---
+
+## ✅ Sign the Class Action
+
+If you are impacted and want to join the participation dataset, submit your information here:
+
+- Google Form (Public Intake): https://docs.google.com/forms/d/e/1FAIpQLSc_ZpsFCDdnhUxXjLk02QQRnpPQvkRs-g8aWfXOo9oFV4Nmvw/viewform?usp=dialog
+
