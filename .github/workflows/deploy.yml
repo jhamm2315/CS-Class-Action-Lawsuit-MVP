@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,26 +27,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
 
-      - name: Install
+      - name: Install (frontend)
         working-directory: frontend
         run: |
           node -v
           npm -v
           ls -la
-          cat package.json | sed -n "1,120p"
+          echo "---- package.json deps (i18next) ----"
+          cat package.json | sed -n '1,140p' | sed -n '1,60p'
+          echo "---- npm ci ----"
+          npm cache clean --force
           npm ci
-          node -e "console.log(\"i18next resolved to:\", require.resolve(\"i18next\"))"
+          echo "---- verify i18next installed ----"
+          npm ls i18next || true
+          node -e "console.log('i18next resolved to:', require.resolve('i18next'))"
 
-      - name: Build
+      - name: Build (frontend)
         working-directory: frontend
-        run: npm run build
-
-      - name: Disable Jekyll
-        working-directory: frontend
-        run: touch dist/.nojekyll
+        run: |
+          npm run build
+          test -f dist/index.html
+          touch dist/.nojekyll
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
