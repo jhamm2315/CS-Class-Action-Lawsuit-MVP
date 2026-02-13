@@ -16,7 +16,7 @@ export function detectPII(text) {
       hits.push({ type: p.name, start: m.index, end: m.index + m[0].length, value: m[0] });
     }
   }
-  return hits.sort((a,b)=>a.start-b.start);
+  return hits.sort((a, b) => a.start - b.start);
 }
 
 export function redactPII(text) {
@@ -25,16 +25,4 @@ export function redactPII(text) {
     redacted = redacted.replace(p.re, `[${p.name}]`);
   }
   return redacted;
-
-  const matches = [];
-  let text = input;
-
-  rules.forEach(({ label, re }) => {
-    text = text.replace(re, (m, _1, offset) => {
-      matches.push({ label, value: m, index: offset });
-      return m.replace(/./g, mask);
-    });
-  });
-
-  return { text, matches };
 }
