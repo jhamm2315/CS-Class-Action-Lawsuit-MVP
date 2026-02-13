@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Base -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Operation: CODE 1983 — Federal-law motions, AI-assisted</title>
+    <meta name="description" content="Anonymous, AI-powered legal tooling for §1983 & Due Process. Generate court-ready motions grounded in winning federal precedent." />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Theme colors (light/dark) -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b1020" />
+
+    <!-- Favicons / PWA -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Fonts (optional) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- ZeroFour theme (put HTML5 UP ZeroFour assets under /public/assets) -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <!-- Preload first hero image for fast LCP -->
+    <link rel="preload" as="image" href="/hero/father-1.jpg"
+          imagesrcset="/hero/father-1.jpg 1200w, /hero/father-1@2x.jpg 2400w"
+          imagesizes="(max-width: 768px) 100vw, 1200px" />
+
+    <!-- Early dark-mode switch to avoid FOUC -->
+    <script>
+      (function () {
+        try {
+          const stored = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const useDark = stored ? stored === "dark" : prefersDark;
+          if (useDark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Minimal skeleton styles while React loads (kept & augmented) -->
+    <style>
+      :root { --bg:#fff; --fg:#0b1020; --muted:#667085; --accent:#4f46e5; }
+      .dark :root, .dark body { --bg:#0b1020; --fg:#e6e9f2; --muted:#98a2b3; --accent:#818cf8; }
+      html, body { height: 100%; }
+      body { margin:0; background:var(--bg); color:var(--fg);
+             font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif; }
+      .shell { max-width:1100px; margin:0 auto; padding:16px; }
+      .topbar { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+      .brand { font-weight:800; letter-spacing:.2px; text-decoration:none; color:var(--fg); }
+      .cta { display:inline-flex; gap:.5rem; align-items:center; border:1px solid #e5e7eb; padding:10px 14px; border-radius:10px; text-decoration:none; color:var(--fg); }
+      .cta--primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+      .hero { display:grid; gap:16px; grid-template-columns:1.1fr .9fr; align-items:center; }
+      .hero h1 { font-size:clamp(1.8rem,3vw,3rem); line-height:1.1; margin:0; }
+      .hero p { color:var(--muted); margin:.5rem 0 1rem; }
+      .hero-img { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:16px; background:#0a0a0a; display:grid; place-items:center; }
+      .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+      .loading { display:inline-block; width:22px; height:22px; border-radius:50%; border:2px solid rgba(0,0,0,.2); border-top-color:var(--accent); animation:s .7s linear infinite; }
+      @keyframes s { to { transform: rotate(360deg); } }
+      @media (max-width:960px) { .hero { grid-template-columns:1fr; } }
+      .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+      .skip:focus { position:static; width:auto; height:auto; padding:.5rem; background:#fff; color:#111; border-radius:.5rem; }
+      /* Hide preload once React hydrates */
+      .hydrated #preload { display: none !important; }
+    </style>
+  </head>
+
+  <!-- ZeroFour expects 'homepage is-preload' on body; React will still mount inside #root -->
+  <body class="homepage is-preload">
+    <a class="skip" href="#root">Skip to content</a>
+
+    <!-- Lightweight shell while React boots (kept) -->
+    <div id="preload" class="shell" aria-hidden="true">
+      <div class="topbar">
+        <a class="brand" href="/">🛡️ Operation: CODE 1983</a>
+        <div style="display:flex;gap:.5rem">
+          <a class="cta" href="/auth">Sign in</a>
+          <a class="cta cta--primary" href="/case">Try Case Builder</a>
+        </div>
+      </div>
+      <section class="hero">
+        <div>
+          <h1>Hold agencies accountable — with federal law.</h1>
+          <p>Anonymous, AI-powered motions grounded in <strong>winning</strong> §1983 and Due Process cases.</p>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <a class="cta cta--primary" href="/auth">Get Started</a>
+            <a class="cta" href="/motion">Generate a Motion</a>
+          </div>
+        </div>
+        <div class="hero-img">
+          <img src="/hero/father-1.jpg" alt="Father holding his child" loading="eager" />
+        </div>
+      </section>
+      <p style="margin-top:1rem; color: var(--muted); display:flex; align-items:center; gap:.5rem;">
+        <span class="loading" aria-hidden="true"></span> Loading application…
+      </p>
+    </div>
+
+    <!-- React root -->
+    <div id="root"></div>
+
+    <!-- Vite/React entry -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- ZeroFour scripts (dropdowns, breakpoints) -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <!-- Fail-safe: hide preload shell as soon as React renders into #root -->
+    <script>
+      (function () {
+        const root = document.getElementById("root");
+        const pre  = document.getElementById("preload");
+        if (!root) return;
+        const hide = () => { document.documentElement.classList.add("hydrated"); pre && pre.remove(); };
+
+        if (root.childElementCount > 0) hide();
+        const mo = new MutationObserver(() => {
+          if (root.childElementCount > 0) { hide(); mo.disconnect(); }
+        });
+        mo.observe(root, { childList: true });
+        window.addEventListener("load", () => { if (root.childElementCount > 0) hide(); });
+      })();
+    </script>
+
+    <noscript>
+      <div class="shell" style="padding:16px;">
+        <p style="color:#b91c1c">JavaScript is disabled. Enable it to use Operation: CODE 1983.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

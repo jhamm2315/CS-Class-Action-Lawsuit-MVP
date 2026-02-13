@@ -1,0 +1,6 @@
+# EthicalAds
+ethicalads.io, YOUR_PUBLISHER_ID, DIRECT
+# Carbon
+carbonads.net, YOUR_ACCOUNT_ID, DIRECT
+# Google
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

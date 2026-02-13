@@ -1,0 +1,52 @@
+/* Minimal ZeroFour-like shell so the link is valid CSS (fixes MIME error). */
+/* You can replace this later with the real ZeroFour CSS bundle. */
+
+:root { --bg:#0b1020; --fg:#e6e9f2; --muted:#98a2b3; --accent:#6d6afc; }
+html,body { height:100%; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+a { color:#a5b4fc; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* Layout regions roughly matching ZeroFour ids/classes */
+#page-wrapper {}
+#header-wrapper { padding: 1.25rem 0; border-bottom:1px solid rgba(255,255,255,.08); }
+#header .inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+#logo { font-weight:800; letter-spacing:.3px; color:var(--fg); text-decoration:none; }
+
+#nav ul { list-style:none; padding:0; margin:0; display:flex; gap:1rem; align-items:center; }
+#nav a { color:var(--fg); opacity:.9; }
+#nav a:hover, #nav .current_page_item a { opacity:1; text-decoration:underline; }
+
+#banner { padding: 2rem 0 1rem; }
+#banner h2 { margin:.25rem 0; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height:1.1; }
+#banner p { color:var(--muted); margin:.25rem 0 1rem; }
+.button { display:inline-block; padding:.6rem .9rem; border-radius:.6rem; border:1px solid rgba(255,255,255,.16); color:var(--fg); }
+.button.large { padding:.75rem 1.1rem; font-weight:600; }
+.button.icon { padding-left:1rem; }
+.button.alt { background:transparent; }
+.button:hover { background:rgba(255,255,255,.06); text-decoration:none; }
+.button.fa-check-circle::before { content:"✔︎ "; opacity:.9; }
+
+/* Main wrapper and sections */
+#main-wrapper { padding: 1rem 0 2rem; }
+.wrapper.style1 .inner { max-width:1100px; margin:0 auto; padding: 0 1rem; }
+.container.box.feature1 { max-width:1100px; margin: 0 auto; padding: 1rem; }
+.image.featured { border-radius:12px; overflow:hidden; background:#000; }
+
+/* Footer */
+#footer-wrapper { border-top:1px solid rgba(255,255,255,.08); }
+#footer.container { max-width:1100px; margin:0 auto; padding:1rem; color:var(--muted); }
+#footer .row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+#copyright .menu { display:flex; gap:1rem; padding:0; margin:1rem 0 0; list-style:none; }
+
+/* Utility */
+.container { max-width:1100px; margin:0 auto; padding:0 1rem; }
+.row { display:block; }
+.col-12, .col-6 { width:100%; }
+
+/* Basic responsive */
+@media (max-width: 960px) {
+  #header .inner { flex-wrap:wrap; }
+  #nav ul { flex-wrap:wrap; gap:.75rem; }
+  #footer .row { grid-template-columns:1fr; }
+}
