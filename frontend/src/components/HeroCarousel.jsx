@@ -47,6 +47,7 @@ export default function HeroCarousel({
         }}
       />
 
+      {/* Optional navigation dots */}
       {images.length > 1 && (
         <div
           style={{
@@ -71,6 +72,8 @@ export default function HeroCarousel({
                 cursor: "pointer",
                 padding: 0,
               }}
+              aria-label={`Show image ${i + 1}`}
+              type="button"
             />
           ))}
         </div>
