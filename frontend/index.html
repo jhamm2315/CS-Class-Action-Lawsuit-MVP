@@ -13,9 +13,9 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b1020" />
 
     <!-- Favicons / PWA -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+    <link rel="manifest" href="%BASE_URL%manifest.webmanifest" />
 
     <!-- Fonts (optional) -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,10 +23,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- ZeroFour theme (put HTML5 UP ZeroFour assets under /public/assets) -->
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="%BASE_URL%assets/css/main.css" />
 
     <!-- Preload first hero image for fast LCP -->
-    <link rel="preload" as="image" href="/hero/father-1.jpg"
+    <link rel="preload" as="image" href="%BASE_URL%hero/father-1.jpg"
           imagesrcset="/hero/father-1.jpg 1200w, /hero/father-1@2x.jpg 2400w"
           imagesizes="(max-width: 768px) 100vw, 1200px" />
 
@@ -76,10 +76,10 @@
     <!-- Lightweight shell while React boots (kept) -->
     <div id="preload" class="shell" aria-hidden="true">
       <div class="topbar">
-        <a class="brand" href="/">🛡️ Operation: CODE 1983</a>
+        <a class="brand" href="%BASE_URL%">🛡️ Operation: CODE 1983</a>
         <div style="display:flex;gap:.5rem">
-          <a class="cta" href="/auth">Sign in</a>
-          <a class="cta cta--primary" href="/case">Try Case Builder</a>
+          <a class="cta" href="%BASE_URL%auth">Sign in</a>
+          <a class="cta cta--primary" href="%BASE_URL%case">Try Case Builder</a>
         </div>
       </div>
       <section class="hero">
@@ -87,12 +87,12 @@
           <h1>Hold agencies accountable — with federal law.</h1>
           <p>Anonymous, AI-powered motions grounded in <strong>winning</strong> §1983 and Due Process cases.</p>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-            <a class="cta cta--primary" href="/auth">Get Started</a>
-            <a class="cta" href="/motion">Generate a Motion</a>
+            <a class="cta cta--primary" href="%BASE_URL%auth">Get Started</a>
+            <a class="cta" href="%BASE_URL%motion">Generate a Motion</a>
           </div>
         </div>
         <div class="hero-img">
-          <img src="/hero/father-1.jpg" alt="Father holding his child" loading="eager" />
+          <img src="%BASE_URL%hero/father-1.jpg" alt="Father holding his child" loading="eager" />
         </div>
       </section>
       <p style="margin-top:1rem; color: var(--muted); display:flex; align-items:center; gap:.5rem;">
@@ -104,15 +104,15 @@
     <div id="root"></div>
 
     <!-- Vite/React entry -->
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="%BASE_URL%src/main.jsx"></script>
 
     <!-- ZeroFour scripts (dropdowns, breakpoints) -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery.dropotron.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="%BASE_URL%assets/js/jquery.min.js"></script>
+    <script src="%BASE_URL%assets/js/jquery.dropotron.min.js"></script>
+    <script src="%BASE_URL%assets/js/browser.min.js"></script>
+    <script src="%BASE_URL%assets/js/breakpoints.min.js"></script>
+    <script src="%BASE_URL%assets/js/util.js"></script>
+    <script src="%BASE_URL%assets/js/main.js"></script>
 
     <!-- Fail-safe: hide preload shell as soon as React renders into #root -->
     <script>

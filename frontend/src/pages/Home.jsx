@@ -1,4 +1,4 @@
-/// frontend/src/pages/Home.jsx
+// frontend/src/pages/Home.jsx
 import React from "react";
 import ZeroFourLayout from "../layouts/ZeroFourLayout";
 import HeroCarousel from "../components/HeroCarousel";
@@ -10,24 +10,16 @@ import FeaturesGrid from "../components/FeaturesGrid";
 import LawLibraryPreview from "../components/LawLibraryPreview";
 import DOHWidget from "@/components/widgets/DOHWidget";
 
-/*
-  IMPORTANT:
-  GitHub Pages hosts this project under:
-  /CS-Class-Action-Lawsuit-MVP/
-
-  So we MUST prefix hero images with BASE_URL.
-*/
-
-const base = import.meta.env.BASE_URL;
+const GH_PAGES_BASENAME = "/CS-Class-Action-Lawsuit-MVP";
 
 const imgs = [
-  { src: `${base}hero/father-1.jpg?v=3`, alt: "Father and child",        focus: [0.86, 0.52] },
-  { src: `${base}hero/father-2.jpg?v=3`, alt: "Father reading to child", focus: [0.62, 0.50] },
-  { src: `${base}hero/father-3.jpg?v=3`, alt: "Asian father with son",   focus: [0.55, 0.48] },
-  { src: `${base}hero/father-4.jpg?v=3`, alt: "Latino father at park",   focus: [0.58, 0.45] },
-  { src: `${base}hero/father-5.jpg?v=3`, alt: "Dad and child outdoors",  focus: [0.55, 0.50] },
-  { src: `${base}hero/mother-1.jpg?v=3`, alt: "Mother and child",        focus: [0.55, 0.48] },
-  { src: `${base}hero/mother-2.jpg?v=3`, alt: "Mom and child hugging",   focus: [0.55, 0.48] },
+  { src: `${GH_PAGES_BASENAME}/hero/father-1.jpg?v=3`, alt: "Father and child",        focus: [0.86, 0.52] },
+  { src: `${GH_PAGES_BASENAME}/hero/father-2.jpg?v=3`, alt: "Father reading to child", focus: [0.62, 0.50] },
+  { src: `${GH_PAGES_BASENAME}/hero/father-3.jpg?v=3`, alt: "Asian father with son",   focus: [0.55, 0.48] },
+  { src: `${GH_PAGES_BASENAME}/hero/father-4.jpg?v=3`, alt: "Latino father at park",   focus: [0.58, 0.45] },
+  { src: `${GH_PAGES_BASENAME}/hero/father-5.jpg?v=3`, alt: "Dad and child outdoors",  focus: [0.55, 0.50] },
+  { src: `${GH_PAGES_BASENAME}/hero/mother-1.jpg?v=3`, alt: "Mother and child",        focus: [0.55, 0.48] },
+  { src: `${GH_PAGES_BASENAME}/hero/mother-2.jpg?v=3`, alt: "Mom and child hugging",   focus: [0.55, 0.48] },
 ];
 
 export default function Home() {
