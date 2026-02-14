@@ -1,41 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import { enableDevBypassFromQuery } from "./utils/devBypass";
-enableDevBypassFromQuery();
-import { enableDemoFromQuery } from "./utils/demoMode";
-enableDemoFromQuery();
 import { BrowserRouter } from "react-router-dom";
 
-// Keep your existing global styles/imports
+import App from "./App";
+import { enableDevBypassFromQuery } from "./utils/devBypass";
+import { enableDemoFromQuery } from "./utils/demoMode";
+
 import "./index.css";
 import "./i18n";
 
-// If you still import other CSS (e.g., components.css), you can keep it
-// import "./styles/components.css";
+enableDevBypassFromQuery();
+enableDemoFromQuery();
 
 function mount() {
   const rootEl = document.getElementById("root");
   if (!rootEl) return;
 
+  // GitHub Pages serves at /CS-Class-Action-Lawsuit-MVP/
+  // React Router basename must NOT end with "/"
+  const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+
   ReactDOM.createRoot(rootEl).render(
     <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-
-    ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/\$/, "")}>
+      <BrowserRouter basename={base}>
         <App />
       </BrowserRouter>
     </React.StrictMode>
   );
 
-  // NEW: tell index.html to hide the preload shell once React has rendered
+  // Optional: hide any preload shell if you use one
   document.documentElement.classList.add("hydrated");
   const pre = document.getElementById("preload");
   if (pre) pre.remove();
+
+  console.info("[CODE1983] App mounted. BASE_URL =", import.meta.env.BASE_URL, "basename =", base);
 }
 
 if (document.readyState === "loading") {
@@ -43,6 +41,3 @@ if (document.readyState === "loading") {
 } else {
   mount();
 }
-
-// Optional debug
-console.info("[CODE1983] App mounted");
