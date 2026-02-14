@@ -1,15 +1,6 @@
 // frontend/src/components/HeroCarousel.jsx
 import React, { useEffect, useState } from "react";
 
-function to2x(url) {
-  if (!url) return url;
-
-  const [path, query = ""] = String(url).split("?");
-  const retinaPath = path.replace(/(\.[a-zA-Z0-9]+)$/, "@2x$1");
-
-  return query ? `${retinaPath}?${query}` : retinaPath;
-}
-
 export default function HeroCarousel({
   images = [],
   aspect = "photo",
@@ -44,7 +35,6 @@ export default function HeroCarousel({
     >
       <img
         src={image.src}
-        srcSet={`${image.src} 1x, ${to2x(image.src)} 2x`}
         alt={image.alt || ""}
         style={{
           width: "100%",
@@ -57,7 +47,6 @@ export default function HeroCarousel({
         }}
       />
 
-      {/* Optional navigation dots */}
       {images.length > 1 && (
         <div
           style={{
