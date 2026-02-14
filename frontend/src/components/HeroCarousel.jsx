@@ -1,87 +1,91 @@
-import { useEffect, useRef, useState } from "react";
+// frontend/src/components/HeroCarousel.jsx
+import React, { useEffect, useState } from "react";
+
+function to2x(url) {
+  if (!url) return url;
+
+  const [path, query = ""] = String(url).split("?");
+  const retinaPath = path.replace(/(\.[a-zA-Z0-9]+)$/, "@2x$1");
+
+  return query ? `${retinaPath}?${query}` : retinaPath;
+}
 
 export default function HeroCarousel({
   images = [],
-  intervalMs = 4500,
-  aspect = "photo",   // 'video' (16/9) | 'photo' (4/3) | 'square' (1/1)
-  maxHeight = 600
+  aspect = "photo",
+  maxHeight = 600,
+  interval = 5000,
 }) {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [loaded, setLoaded] = useState(() => images.map(() => false));
-  const [errors, setErrors] = useState(() => images.map(() => "")); // <-- track failures
-  const len = images.length;
-  const timer = useRef(null);
-
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!len || paused || prefersReduced) return;
-    timer.current = setInterval(() => setI(p => (p + 1) % len), intervalMs);
-    return () => clearInterval(timer.current);
-  }, [len, paused, prefersReduced, intervalMs]);
+    if (!images.length) return;
 
-  const asp =
-    aspect === "video"  ? "16 / 9" :
-    aspect === "square" ? "1 / 1"  :
-                          "4 / 3";
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [images, interval]);
+
+  if (!images.length) return null;
+
+  const image = images[index];
 
   return (
-    <section
-      className="hero-frame"
-      aria-roledescription="carousel"
-      aria-label="Family photos"
-      tabIndex={0}
-      onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}
-      style={{ aspectRatio: asp, maxHeight }}
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        overflow: "hidden",
+        borderRadius: 12,
+        maxHeight,
+      }}
     >
-      {images.map((img, idx) => {
-        const [fx, fy] = img.focus || [0.5, 0.5];
-        const pos = `${Math.round(fx * 100)}% ${Math.round(fy * 100)}%`;
-        const active = idx === i && loaded[idx] && !errors[idx];
+      <img
+        src={image.src}
+        srcSet={`${image.src} 1x, ${to2x(image.src)} 2x`}
+        alt={image.alt || ""}
+        style={{
+          width: "100%",
+          height: "auto",
+          objectFit: "cover",
+          objectPosition: image.focus
+            ? `${image.focus[0] * 100}% ${image.focus[1] * 100}%`
+            : "center",
+          display: "block",
+        }}
+      />
 
-        return (
-          <img
-            key={idx}
-            src={img.src}
-            alt={img.alt || "Slide"}
-            className="hero-slide"
-            style={{ objectPosition: pos, opacity: active ? 1 : 0 }}
-            onLoad={() =>
-              setLoaded(prev => { const c = prev.slice(); c[idx] = true; return c; })
-            }
-            onError={() => {
-              console.warn("[HeroCarousel] failed to load:", img.src);
-              setErrors(prev => { const c = prev.slice(); c[idx] = img.src; return c; });
-            }}
-          />
-        );
-      })}
-
-      {/* If current slide has an error, show a visible badge */}
-      {errors[i] && (
-        <div className="hero-error">
-          Image not found: <code>{errors[i]}</code>
+      {/* Optional navigation dots */}
+      {images.length > 1 && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 12,
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: 8,
+          }}
+        >
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                border: "none",
+                background: i === index ? "#fff" : "rgba(255,255,255,0.5)",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            />
+          ))}
         </div>
       )}
-
-      <button className="carousel-btn-left"  aria-label="Previous" onClick={() => setI(p => (p - 1 + len) % len)}>‹</button>
-      <button className="carousel-btn-right" aria-label="Next"     onClick={() => setI(p => (p + 1) % len)}>›</button>
-
-      <div className="hero-dots">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            className={`h-2 w-2 rounded-full border ${idx === i ? "bg-white" : "bg-white/60"}`}
-            aria-label={`Go to slide ${idx + 1}`}
-            aria-current={idx === i ? "true" : "false"}
-            onClick={() => setI(idx)}
-          />
-        ))}
-      </div>
-    </section>
+    </div>
   );
 }
